@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Adventure Game</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0e4d7;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .welcome-screen {
+            background-color: #ffe4e1;
+            color: #333;
+            padding: 100px 20px;
+        }
+        .welcome-screen h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .welcome-screen button {
+            background-color: #ffb6c1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .char-selection {
+            display: none;
+            padding: 50px 20px;
+        }
+        .char-selection h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .char-selection .character {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .char-selection .character img {
+            border-radius: 10px;
+            width: 200px;
+            height: auto;
+        }
+        .char-selection .character p {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .char-description {
+            display: none;
+            padding: 50px 20px;
+            background-color: #fff;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .char-description h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff69b4;
+        }
+        .char-description img {
+            border-radius: 10px;
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .char-description p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .choice {
+            display: none;
+            padding: 50px 20px;
+        }
+        .choice h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .choice button {
+            background-color: #ffb6c1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .outcome {
+            display: none;
+            padding: 50px 20px;
+            background-color: #000;
+            color: #fff;
+            margin: 50px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        .outcome h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .outcome p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .bright-outcome {
+            display: none;
+            padding: 50px 20px;
+            background-color: #fff;
+            color: #333;
+            margin: 50px auto;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .bright-outcome h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .bright-outcome p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-screen">
+        <h1>Welcome to Cat Adventure!</h1>
+        <button onclick="startGame()">Play</button>
+    </div>
+
+    <div class="char-selection">
+        <h2>Choose Your Character</h2>
+        <div class="character" onclick="selectCharacter('Charlie')">
+            <img src="1a.jpg" alt="Charlie the Ojos Azules Cat">
+            <p>Charlie</p>
+        </div>
+        <div class="character" onclick="selectCharacter('Stella')">
+            <img src="1b.jpg" alt="Stella the Ragdoll Cat">
+            <p>Stella</p>
+        </div>
+    </div>
+
+    <div class="char-description" id="charlie-description">
+        <h2>Charlie</h2>
+        <img src="1a.jpg" alt="Charlie the Ojos Azules Cat">
+        <p>Charlie is a 3-year-old cat owned by a rich family with one son who is 15 years old. Charlie's strengths are power and combat, but his weaknesses are food and heights. Charlie enjoys a life of luxury but often dreams of adventure beyond the mansion walls.</p>
+        <button onclick="startCharlieAdventure()">Start Adventure</button>
+    </div>
+
+    <div class="char-description" id="stella-description">
+        <h2>Stella</h2>
+        <img src="1b.jpg" alt="Stella the Ragdoll Cat">
+        <p>Stella is a 2-year-old stray cat. Her strengths are speed, combat, and stamina, but her weaknesses are warmth and power. Stella has learned to survive on the streets and is always on the lookout for her next adventure. She dreams of finding a warm and loving home.</p>
+        <button onclick="startStellaAdventure()">Start Adventure</button>
+    </div>
+
+    <div class="choice" id="charlie-choice1">
+        <h2>What will Charlie do?</h2>
+        <button onclick="charlieStayHome()">Stay at Home</button>
+        <button onclick="charlieGoWild()">Go Out into the Wild</button>
+    </div>
+
+    <div class="choice" id="charlie-choice2">
+        <h2>What will Charlie do?</h2>
+        <button onclick="charlieCrossRiver()">Go Across the River</button>
+        <button onclick="charlieCrossRoad()">Go Across the Road</button>
+    </div>
+
+    <div class="choice" id="charlie-choice3">
+        <h2>What will Charlie do?</h2>
+        <button onclick="charlieNearFactory()">Go Near the Factory to Warm Up</button>
+        <button onclick="charlieKeepWalking()">Stay Cold and Keep Walking</button>
+    </div>
+
+    <div class="choice" id="charlie-choice4">
+        <h2>What will Charlie do?</h2>
+        <button onclick="charlieFollowSophie()">Follow Sophie</button>
+        <button onclick="charlieFollowLarie()">Follow Larie</button>
+    </div>
+
+    <div class="choice" id="charlie-choice5">
+        <h2>What will Charlie do?</h2>
+        <button onclick="charlieAcrossMountains()">Keep Going Across the Mountains</button>
+        <button onclick="charlieAdoptedByLarie()">Get Adopted by Larie</button>
+    </div>
+
+    <div class="choice" id="stella-choice1">
+        <h2>What will Stella do?</h2>
+        <button onclick="stellaBusyRoad()">Face the Busy Road</button>
+        <button onclick="stellaStrayCats()">Face the Gang of Stray Cats</button>
+    </div>
+
+    <div class="choice" id="stella-choice2">
+        <h2>What will Stella do?</h2>
+        <button onclick="stellaBridge()">Go Across the Bridge</button>
+        <button onclick="stellaStairs()">Jump Up the Stairs</button>
+    </div>
+
+    <div class="choice" id="stella-choice3">
+        <h2>What will Stella do?</h2>
+        <button onclick="stellaFollowFood()">Follow the Scent of Food</button>
+        <button onclick="stellaFollowFloral()">Follow the Floral Scent</button>
+    </div>
+
+    <div class="choice" id="stella-choice4">
+        <h2>What will Stella do?</h2>
+        <button onclick="stellaRottenMeat()">Eat the Pile of Rotten Meat</button>
+        <button onclick="stellaSpilledMilk()">Drink the Plate of Spilled Milk</button>
+    </div>
+
+    <div class="choice" id="stella-choice5">
+        <h2>What will Stella do?</h2>
+        <button onclick="stellaWalkWithSophie()">Walk Away with Sophie</button>
+        <button onclick="stellaWalkWithLarie()">Walk Away with Larie</button>
+    </div>
+
+    <div class="outcome" id="charlie-home">
+        <h2>Charlie's Fate</h2>
+        <p>Charlie stayed at home and lived until he was 9 years, 3 months, 15 minutes, and 3 seconds old. He died of heart disease.</p>
+        <audio autoplay>
+            <source src="crying.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <div class="outcome" id="charlie-road">
+        <h2>Dead</h2>
+        <p>Charlie tried to cross the road and met his untimely death.</p>
+        <audio autoplay>
+            <source src="goth_theme.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <div class="outcome" id="charlie-factory">
+        <h2>Charlie's Fate</h2>
+        <p>Charlie went near the factory and died of a gas leak.</p>
+    </div>
+
+    <div class="outcome" id="charlie-sophie">
+        <h2>Charlie's Fate</h2>
+        <p>Sophie wasn't who she seemed to be, and Charlie met his end.</p>
+    </div>
+
+    <div class="outcome" id="charlie-mountains">
+        <h2>Charlie's Fate</h2>
+        <p>Charlie kept going across the mountains and died of hunger.</p>
+    </div>
+
+    <div class="bright-outcome" id="charlie-larie">
+        <h2>Charlie's Journey</h2>
+        <p>Charlie got adopted by Larie. He lived till 11 years, 2 months, 10 minutes, and 3 seconds. He got famous as the traveling cat and died peacefully with lots of loved ones.</p>
+        <button onclick="returnToMain()">Return to Main Screen</button>
+    </div>
+
+    <div class="outcome" id="stella-cats">
+        <h2>Stella's Fate</h2>
+        <p>Stella fought till the second she died and brought down 3 other cats with her.</p>
+    </div>
+
+    <div class="outcome" id="stella-stairs">
+        <h2>Stella's Fate</h2>
+        <p>Unknown death. Before closing her eyes she saw a gun pointing at the floor and brown boots walking towards her.</p>
+    </div>
+
+    <div class="outcome" id="stella-floral">
+        <h2>Stella's Fate</h2>
+        <p>Stella fell into darkness and a pile of roses.</p>
+    </div>
+
+    <div class="outcome" id="stella-milk">
+        <h2>Stella's Fate</h2>
+        <p>Stella drank the spilled milk and died due to poison.</p>
+    </div>
+
+    <div class="bright-outcome" id="stella-sophie">
+        <h2>Stella's Journey</h2>
+        <p>Stella lived up to 31 years, 4 months, 5 days, 3 minutes, and 2 seconds breaking the Guinness World Record and living a very happy life staying warm always.</p>
+        <button onclick="returnToMain()">Return to Main Screen</button>
+    </div>
+
+    <div class="outcome" id="stella-larie">
+        <h2>Stella's Fate</h2>
+        <p>Unknown death. Larie was not who he seemed to be.</p>
+    </div>
+
+    <script>
+        function startGame() {
+            document.querySelector('.welcome-screen').style.display = 'none';
+            document.querySelector('.char-selection').style.display = 'block';
+        }
+
+        function selectCharacter(character) {
+            document.querySelector('.char-selection').style.display = 'none';
+            if (character === 'Charlie') {
+                document.getElementById('charlie-description').style.display = 'block';
+            } else if (character === 'Stella') {
+                document.getElementById('stella-description').style.display = 'block';
+            }
+        }
+
+        function startCharlieAdventure() {
+            document.getElementById('charlie-description').style.display = 'none';
+            document.getElementById('charlie-choice1').style.display = 'block';
+        }
+
+        function startStellaAdventure() {
+            document.getElementById('stella-description').style.display = 'none';
+            document.getElementById('stella-choice1').style.display = 'block';
+        }
+
+        function charlieStayHome() {
+            document.getElementById('charlie-choice1').style.display = 'none';
+            document.getElementById('charlie-home').style.display = 'block';
+        }
+
+        function charlieGoWild() {
+            document.getElementById('charlie-choice1').style.display = 'none';
+            document.getElementById('charlie-choice2').style.display = 'block';
+        }
+
+        function charlieCrossRiver() {
+            document.getElementById('charlie-choice2').style.display = 'none';
+            document.getElementById('charlie-choice3').style.display = 'block';
+        }
+
+        function charlieCrossRoad() {
+            document.getElementById('charlie-choice2').style.display = 'none';
+            document.getElementById('charlie-road').style.display = 'block';
+        }
+
+        function charlieNearFactory() {
+            document.getElementById('charlie-choice3').style.display = 'none';
+            document.getElementById('charlie-factory').style.display = 'block';
+        }
+
+        function charlieKeepWalking() {
+            document.getElementById('charlie-choice3').style.display = 'none';
+            document.getElementById('charlie-choice4').style.display = 'block';
+        }
+
+        function charlieFollowSophie() {
+            document.getElementById('charlie-choice4').style.display = 'none';
+            document.getElementById('charlie-sophie').style.display = 'block';
+        }
+
+        function charlieFollowLarie() {
+            document.getElementById('charlie-choice4').style.display = 'none';
+            document.getElementById('charlie-choice5').style.display = 'block';
+        }
+
+        function charlieAcrossMountains() {
+            document.getElementById('charlie-choice5').style.display = 'none';
+            document.getElementById('charlie-mountains').style.display = 'block';
+        }
+
+        function charlieAdoptedByLarie() {
+            document.getElementById('charlie-choice5').style.display = 'none';
+            document.getElementById('charlie-larie').style.display = 'block';
+        }
+
+        function stellaBusyRoad() {
+            document.getElementById('stella-choice1').style.display = 'none';
+            document.getElementById('stella-choice2').style.display = 'block';
+        }
+
+        function stellaStrayCats() {
+            document.getElementById('stella-choice1').style.display = 'none';
+            document.getElementById('stella-cats').style.display = 'block';
+        }
+
+        function stellaBridge() {
+            document.getElementById('stella-choice2').style.display = 'none';
+            document.getElementById('stella-choice3').style.display = 'block';
+        }
+
+        function stellaStairs() {
+            document.getElementById('stella-choice2').style.display = 'none';
+            document.getElementById('stella-stairs').style.display = 'block';
+        }
+
+        function stellaFollowFood() {
+            document.getElementById('stella-choice3').style.display = 'none';
+            document.getElementById('stella-choice4').style.display = 'block';
+        }
+
+        function stellaFollowFloral() {
+            document.getElementById('stella-choice3').style.display = 'none';
+            document.getElementById('stella-floral').style.display = 'block';
+        }
+
+        function stellaRottenMeat() {
+            document.getElementById('stella-choice4').style.display = 'none';
+            document.getElementById('stella-choice5').style.display = 'block';
+        }
+
+        function stellaSpilledMilk() {
+            document.getElementById('stella-choice4').style.display = 'none';
+            document.getElementById('stella-milk').style.display = 'block';
+        }
+
+        function stellaWalkWithSophie() {
+            document.getElementById('stella-choice5').style.display = 'none';
+            document.getElementById('stella-sophie').style.display = 'block';
+        }
+
+        function stellaWalkWithLarie() {
+            document.getElementById('stella-choice5').style.display = 'none';
+            document.getElementById('stella-larie').style.display = 'block';
+        }
+
+        function returnToMain() {
+            document.querySelector('.bright-outcome').style.display = 'none';
+            document.querySelector('.welcome-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
